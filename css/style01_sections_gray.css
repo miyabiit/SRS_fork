@@ -1,0 +1,471 @@
+@charset "UTF-8";
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, section, article, aside, footer, header, nav, main {
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-size: 63%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    background:#fff;
+    font-size: 1.8em;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+  background-image: url("../img/top/bg04.png");
+  background-repeat: repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+    z-index: -1;
+}
+
+
+header {
+  background-color: #000;
+  color: #fff;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+}
+
+.logo img {
+  height: 40px;
+  vertical-align: middle;
+}
+
+.contact-info {
+  font-size: 0.85em;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.contact-info .tel-number {
+  display: inline-block;
+  background-color: #2360a1;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin: 5px 0;
+  font-size: 1.4em;
+}
+
+.contact-info .tel::before {
+  content: "📞";
+  margin-right: 5px;
+}
+
+.contact-info .note {
+  white-space: nowrap;
+}
+
+.hamburger {
+  font-size: 1.6em;
+  cursor: pointer;
+  display: none;
+}
+
+.navbar {
+  display: none;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background-color: #000;
+  border-top: 1px solid #555;
+  border-bottom: 1px solid #555;
+}
+
+.navbar li {
+  flex: 1;
+  border-left: 1px solid #555;
+  border-right: 1px solid #555;
+  text-align: center;
+}
+
+.navbar li:first-child {
+  border-left: none;
+}
+
+.navbar li:last-child {
+  border-right: none;
+}
+
+.navbar li a {
+  text-decoration: none;
+  color: #fff;
+  padding: 14px 0;
+  display: block;
+  transition: background 0.3s;
+}
+
+.navbar li a:hover {
+  background-color: #444;
+}
+
+.navbar.active {
+  display: block;
+}
+
+.sp-contact-info {
+  display: none;
+}
+
+/* PC */
+@media (min-width: 769px) {
+.logo {
+flex: 1;
+}
+
+.contact-info {
+flex: 1;
+text-align: right;
+}
+
+.hamburger {
+display: none;
+}
+
+.navbar {
+display: block;
+}
+
+.contact-info .note {
+white-space: normal;
+}
+}
+
+/* SP */
+@media (max-width: 768px) {
+.top-bar {
+flex-direction: row;
+align-items: flex-start;
+}
+
+.logo {
+flex: 1;
+}
+
+.logo img {
+height: 30px;
+}
+
+.contact-info {
+flex: 2;
+text-align: center;
+font-size: 0.85em;
+margin-top: 5px;
+display: none;
+}
+
+.hamburger {
+display: block;
+flex: 1;
+text-align: right;
+}
+
+.navbar ul {
+flex-direction: column;
+}
+
+.navbar li {
+border-top: 1px solid #444;
+border-left: none;
+border-right: none;
+}
+
+.navbar li:first-child {
+border-top: none;
+}
+
+.sp-contact-info {
+display: block;
+text-align: center;
+font-size: 0.85em;
+background-color: #111;
+padding: 15px 10px 20px;
+line-height: 1.5;
+}
+.sp-contact-comment {
+margin-top: 1em;
+}
+.sp-contact-info .tel-number {
+display: inline-block;
+margin-top: 5px;
+font-weight: bold;
+background-color: #007bff;
+color: #fff;
+padding: 4px 10px;
+border-radius: 5px;
+font-size: 1.4em;
+}
+}
+
+.container2 {
+    flex: 1;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 1.6em 1em;
+    position: relative;
+}
+
+@keyframes zoomUp {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+.swiper-slide-active .swiper-img,
+.swiper-slide-duplicate-active .swiper-img,
+.swiper-slide-prev .swiper-img {
+  animation: zoomUp 7s linear 0s normal both;
+}
+@media screen and (min-width: 920px){
+.swiper-slide img {
+    height: 600px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.mainimg-key {
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width:100%;
+    background:rgb(0 0 0 / 50%);
+    text-align:center;
+    z-index: 1;
+}
+}
+@media screen and (max-width: 920px){
+.swiper-slide img {
+    height: 460px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.mainimg-key {
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width:100%;
+    background:rgb(0 0 0 / 50%);
+    text-align:center;
+    z-index: 1;
+}
+}
+
+
+.mainimg-key p {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: aliceblue;
+}
+
+
+.srs_slider{
+  position:relative;
+}
+
+
+.hero-nav {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+  z-index: 10;
+  max-width: 90%;
+  width: 100%;
+  justify-content: center;
+}
+
+.hero-btn {
+  flex: 1;
+  text-align: center;
+  padding: 1rem 1rem;
+  background: #005bac;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 3rem;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s, transform 0.3s;
+  white-space: nowrap;
+}
+
+.hero-btn:hover,
+.hero-btn:focus,
+.hero-btn:active {
+  background: #227fa3;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+
+@media (max-width: 768px) {
+  .hero-nav {
+    flex-wrap: wrap;
+    top: 75%;
+    gap: 1rem;
+  }
+
+  .hero-btn {
+    flex: none;
+    width: 48%;
+    font-size: 1.95rem;
+    padding: 0.8rem 1rem;
+  }
+}
+
+.section-style {
+  width: 100%;
+  /* background-color: #f9f5f0; */
+  padding: 20px 0;
+  overflow-x: hidden;
+}
+
+/* ----------------------------
+  🔍 検索セクション装飾（黒 + グレー）
+----------------------------- */
+#search-box {
+  background: linear-gradient(to right, #111, #2a2a2a);
+  border-top: 5px solid #444;
+  border-bottom: 5px solid #444;
+  color: #fff;
+  padding: 3rem 1rem;
+}
+#search-box select,
+#search-box input {
+  background: #fff;
+  color: #000;
+}
+
+/* ----------------------------
+  🆕 新着商品セクション
+----------------------------- */
+#recommend {
+  background-color: #e6e6e6;
+  padding: 3rem 1rem;
+}
+.product-card {
+  border: 1px solid #bbb;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* ----------------------------
+  💎 メリットセクション
+----------------------------- */
+#merit {
+  background: #f9f9f9;
+  border-left: 8px solid #333;
+  padding: 3rem 1rem;
+}
+.merit {
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+}
+.merit-title {
+  color: #222;
+}
+
+/* ----------------------------
+  🛒 ご購入の流れセクション
+----------------------------- */
+#etc_flow {
+  background: #1c1c1c;
+  color: #fff;
+  padding: 3rem 1rem;
+}
+.sectionFlow_inner {
+  border-left: 6px solid #555;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+.sectionFlow_h img {
+  filter: brightness(0) invert(1);
+}
+
+/* ----------------------------
+  ❓ よくある質問（FAQ）
+----------------------------- */
+#etc_faq {
+  background: #f1f1f1;
+  border-top: 4px solid #555;
+}
+#etc_faq summary {
+  font-weight: bold;
+  background: #444;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+}
+#etc_faq .inner {
+  padding: 1rem;
+  border-left: 4px solid #888;
+  background: #fff;
+}
+
+/* ----------------------------
+  📢 お知らせ・案内（共通）
+----------------------------- */
+#news, #info {
+  background: #fff;
+  padding: 3rem 1rem;
+}
+#news h2, #info h2 {
+  border-left: 5px solid #333;
+  padding-left: 1rem;
+  font-weight: 700;
+  color: #222;
+}
