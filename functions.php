@@ -95,4 +95,56 @@ function set_dbprefix_fork() {
     $wpdb->set_prefix(DBPREFIX_FORK);
 }
 
+function query_for_taxonomy($mypost_type,$mytaxlist,$mymetalist){
+  global $authors_kyusyu;
+  $args = array(
+    'post_type' => $mypost_type,
+    'author__in' => $authors_kyusyu, // 九州地区の投稿者に限定
+    'posts_per_page' => 16,
+    'paged' => get_query_var('paged'),
+    'orderby' => 'date'
+  );
+  $tax_args = array(
+    'relation' => 'AND',
+  );
+  foreach($mytaxlist as $mytax){
+    if(isset($_GET[$mytax])){
+      array_push($tax_args,
+        array(
+          'taxonomy' => $mytax,
+          'field' => 'slug',
+          'terms' => $_GET[$mytax]
+        )
+      );
+    }
+  }
+  $args['tax_query'] = $tax_args;
+  $meta_args = array(
+    'relation' => 'AND',
+  );
+  foreach($mymetalist as $mymeta){
+    if(isset($_GET[$mymeta])){
+      array_push($meta_args,
+        array(
+          'key' => 'req',
+          'value' => $_GET[$mymeta],
+          'compare' => 'IN'
+        )
+      );
+    }
+  }
+  $args['meta_query'] = $meta_args;
+
+  if(!is_user_logged_in()){
+    $args['post_status'] = 'publish'; // ログイン中は非公開も表示
+  }
+  if(isset($_GET['keyword'])){
+    $args['s'] = $_GET['keyword'];
+  }
+  return $args;
+}
+
+
+
+
 ?>
