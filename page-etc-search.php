@@ -4,6 +4,7 @@ Template Name: 商品検索-etc-search
 */
 ?>
 <?php get_header(); ?>
+<?php set_dbprefix_main(); ?>
 <?php get_template_part('global_menu'); ?>
 
 <?php if ( function_exists( 'bcn_display' ) ) : ?>

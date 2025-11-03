@@ -66,6 +66,33 @@ function mydropdown_taxsonomy($taxonomy) {
     echo '</select>';
   }
 }
+//yamada add
+/**
+ * メインサイトを参照する設定
+ */
+$wpdb_main = null;
+$wpdb_fork = null;
+function init_wpdb() {
+    global $wpdb, $wpdb_main, $wpdb_fork;
+    $wpdb_main = new wpdb( DB_USER_MAIN, DB_PASSWORD_MAIN, DB_NAME_MAIN, DB_HOST_MAIN );
+    $wpdb_fork = $wpdb;
+}
+function set_dbprefix_main() {
+    global $wpdb, $wpdb_main, $wpdb_fork;
+    if( is_null($wpdb_main) || is_null($wpdb_fork) ){
+        init_wpdb();
+    }
+    $wpdb = $wpdb_main;
+    $wpdb->set_prefix(DBPREFIX_MAIN);
+}
 
+function set_dbprefix_fork() {
+    global $wpdb, $wpdb_main, $wpdb_fork;
+    if( is_null($wpdb_main) || is_null($wpdb_fork) ){
+        init_wpdb();
+    }
+    $wpdb = $wpdb_fork;
+    $wpdb->set_prefix(DBPREFIX_FORK);
+}
 
 ?>
