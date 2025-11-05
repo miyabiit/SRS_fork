@@ -13,7 +13,59 @@ Template Name: 商品検索結果-etc-result
     </nav>
   </div>
 <?php endif; ?>
+<?php
+function query_for_taxonomy($mypost_type,$mytaxlist,$mymetalist){
+  //global $authors_kyusyu;
+  $args = array(
+    'post_type' => $mypost_type,
+    'posts_per_page' => 16,
+    'paged' => get_query_var('paged'),
+    'orderby' => 'date'
+  );
+  $tax_args = array(
+    'relation' => 'AND',
+  );
+  foreach($mytaxlist as $mytax){
+    if(isset($_GET[$mytax])){
+      array_push($tax_args,
+        array(
+          'taxonomy' => $mytax,
+          'field' => 'slug',
+          'terms' => $_GET[$mytax]
+        )
+      );
+    }
+  }
+  $args['tax_query'] = $tax_args;
+  $meta_args = array(
+    'relation' => 'AND',
+  );
+  foreach($mymetalist as $mymeta){
+    if(isset($_GET[$mymeta])){
+      array_push($meta_args,
+        array(
+          'key' => 'req',
+          'value' => $_GET[$mymeta],
+          'compare' => 'IN'
+        )
+      );
+    }
+  }
+  $args['meta_query'] = $meta_args;
 
+  if(!is_user_logged_in()){
+    $args['post_status'] = 'publish'; // ログイン中は非公開も表示
+  }
+  if(isset($_GET['keyword'])){
+    $args['s'] = $_GET['keyword'];
+  }
+  return $args;
+}
+
+$args = query_for_taxonomy('units', array('un_tubo_cat', 'un_usage_cat', 'un_price_range_cat','pref_cat','shop_sales_area_cat','shop_pref_area_cat','status_cat'),array('req'));
+$wp_query = new WP_query();
+$wp_query->query($args);
+?>
 
 <main>
 <div class="container2">

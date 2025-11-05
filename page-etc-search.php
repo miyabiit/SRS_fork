@@ -7,6 +7,54 @@ Template Name: 商品検索-etc-search
 <?php set_dbprefix_main(); ?>
 <?php get_template_part('global_menu'); ?>
 <?php
+function query_for_taxonomy($mypost_type,$mytaxlist,$mymetalist){
+  //global $authors_kyusyu;
+  $args = array(
+    'post_type' => $mypost_type,
+    'posts_per_page' => 16,
+    'paged' => get_query_var('paged'),
+    'orderby' => 'date'
+  );
+  $tax_args = array(
+    'relation' => 'AND',
+  );
+  foreach($mytaxlist as $mytax){
+    if(isset($_GET[$mytax])){
+      array_push($tax_args,
+        array(
+          'taxonomy' => $mytax,
+          'field' => 'slug',
+          'terms' => $_GET[$mytax]
+        )
+      );
+    }
+  }
+  $args['tax_query'] = $tax_args;
+  $meta_args = array(
+    'relation' => 'AND',
+  );
+  foreach($mymetalist as $mymeta){
+    if(isset($_GET[$mymeta])){
+      array_push($meta_args,
+        array(
+          'key' => 'req',
+          'value' => $_GET[$mymeta],
+          'compare' => 'IN'
+        )
+      );
+    }
+  }
+  $args['meta_query'] = $meta_args;
+
+  if(!is_user_logged_in()){
+    $args['post_status'] = 'publish'; // ログイン中は非公開も表示
+  }
+  if(isset($_GET['keyword'])){
+    $args['s'] = $_GET['keyword'];
+  }
+  return $args;
+}
+<?php
 function my_checkbox_list_taxonomy($mytax_name){
   $mytax = $mytax_name;
   $selected = get_query_var($mytax);
@@ -57,11 +105,11 @@ function my_checkbox_list_taxonomy($mytax_name){
 <div class="container2">
 
 <section class="search-list">
-<!-- ?php
+<?php
   $args = query_for_taxonomy('etc', array('etc_class_cat', 'etc_type_cat', 'etc_mast_cat','etc_price_range_cat','etc_model_cat','etc_time_cat'),array('req'));
   $wp_query = new WP_query();
   $wp_query->query($args);
-? -->
+?>
   <h2 class="headline-title2"><i class="fas fa-search"></i> フォークリフト・その他商品を探す</h2>
 
   <form class="esf-form" method="get" action="/etc-result">
