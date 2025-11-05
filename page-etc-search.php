@@ -20,6 +20,15 @@ function my_checkbox_list_taxonomy($mytax_name){
   print('<input type="checkbox" id="' . $mytax . '_all" ' . $checked . '/> <label for="size_all" class="unit_t strong_f big mdl">すべて選択</label>');
   print('<ul class="choices clearfix">');
   $tags = get_terms($mytax, array('hide_empty' => false, 'orderby' => 'id'));
+  //yamada debug work
+  global $wpdb;
+  echo '<Pre>';
+  print_r( get_taxonomies());
+  //print_r( $wpdb->get_results("SELECT * FROM $wpdb->terms") );
+  print_r($mytax);
+  //print_r($tags);
+  echo '</Pre>';
+  //end of work
   $checkboxes = '';
   foreach($tags as $tag) :
     if(in_array("0", $items)){
@@ -48,11 +57,11 @@ function my_checkbox_list_taxonomy($mytax_name){
 <div class="container2">
 
 <section class="search-list">
-<?php
+<!-- ?php
   $args = query_for_taxonomy('etc', array('etc_class_cat', 'etc_type_cat', 'etc_mast_cat','etc_price_range_cat','etc_model_cat','etc_time_cat'),array('req'));
   $wp_query = new WP_query();
   $wp_query->query($args);
-?>
+? -->
   <h2 class="headline-title2"><i class="fas fa-search"></i> フォークリフト・その他商品を探す</h2>
 
   <form class="esf-form" method="get" action="/etc-result">
