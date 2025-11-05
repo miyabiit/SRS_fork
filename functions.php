@@ -95,5 +95,14 @@ function set_dbprefix_fork() {
     $wpdb->set_prefix(DBPREFIX_FORK);
 }
 
+// for debug
+if (!function_exists('dd')) {
+    function dd($var) {
+        echo '<pre>';
+        var_dump($var);
+        echo '</pre>';
+        die(); // ここで処理を止める
+    }
+}
 
 ?>
