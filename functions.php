@@ -84,6 +84,13 @@ function set_dbprefix_main() {
     }
     $wpdb = $wpdb_main;
     $wpdb->set_prefix(DBPREFIX_MAIN);
+		//tax
+  	register_taxonomy('etc_class_cat', 'etc_class_cat', ['hierarchical' => true,'public' => true]);
+  	register_taxonomy('etc_type_cat', 'etc_type_cat', ['hierarchical' => true,'public' => true]);
+  	register_taxonomy('etc_mast_cat', 'etc_mast_cat', ['hierarchical' => true,'public' => true]);
+  	register_taxonomy('etc_price_range_cat', 'etc_price_range_cat', ['hierarchical' => true,'public' => true]);
+  	register_taxonomy('etc_model_cat', 'etc_model_cat', ['hierarchical' => true,'public' => true]);
+  	register_taxonomy('etc_time_cat', 'etc_time_cat', ['hierarchical' => true,'public' => true]);
 }
 
 function set_dbprefix_fork() {

@@ -65,16 +65,18 @@ function my_checkbox_list_taxonomy($mytax_name){
   //yamada debug work
   global $wpdb;
   // 一度タクソノミーをクリア
-  global $wp_taxonomies;
-  unset( $wp_taxonomies['etc_class_cat'] ); // 例：必要なtaxonomyだけ
+  //global $wp_taxonomies;
+  //unset( $wp_taxonomies['etc_class_cat'] ); // 例：必要なtaxonomyだけ
   // 外部DBに合わせて再登録（最低限の設定でもOK）
+	/*
   register_taxonomy('etc_class_cat', 'etc_class_cat', [
     'hierarchical' => true,
     'public'       => true,
   ]);
+	*/
   echo '<Pre>';
   print_r( get_taxonomies());
-  print_r($mytax_name);
+  //print_r($mytax_name);
   echo '</Pre>';
   //end of work
 
