@@ -4,6 +4,7 @@ Template Name: 商品検索結果-etc-result
 */
 ?>
 <?php get_header(); ?>
+<?php set_dbprefix_main(); ?>
 <?php get_template_part('global_menu'); ?>
 
 <?php if ( function_exists( 'bcn_display' ) ) : ?>
@@ -62,7 +63,7 @@ function query_for_taxonomy($mypost_type,$mytaxlist,$mymetalist){
   return $args;
 }
 
-$args = query_for_taxonomy('units', array('un_tubo_cat', 'un_usage_cat', 'un_price_range_cat','pref_cat','shop_sales_area_cat','shop_pref_area_cat','status_cat'),array('req'));
+$args = query_for_taxonomy('etc', array('etc_class_cat', 'etc_type_cat', 'etc_mast_cat','etc_price_range_cat','etc_model_cat','etc_time_cat'),array('req'));
 $wp_query = new WP_query();
 $wp_query->query($args);
 ?>

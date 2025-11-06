@@ -9,6 +9,8 @@ Template Name: 商品検索-etc-search
 <?php
 function query_for_taxonomy($mypost_type,$mytaxlist,$mymetalist){
   //global $authors_kyusyu;
+  global $wpdb;
+  print_r($wpdb->users);
   $args = array(
     'post_type' => $mypost_type,
     'posts_per_page' => 16,
@@ -54,8 +56,28 @@ function query_for_taxonomy($mypost_type,$mytaxlist,$mymetalist){
   }
   return $args;
 }
+$args = query_for_taxonomy('etc', array('etc_class_cat', 'etc_type_cat', 'etc_mast_cat','etc_price_range_cat','etc_model_cat','etc_time_cat'),array('req'));
+$wp_query = new WP_query();
+$wp_query->query($args);
+?>
 <?php
 function my_checkbox_list_taxonomy($mytax_name){
+  //yamada debug work
+  global $wpdb;
+  // 一度タクソノミーをクリア
+  global $wp_taxonomies;
+  unset( $wp_taxonomies['etc_class_cat'] ); // 例：必要なtaxonomyだけ
+  // 外部DBに合わせて再登録（最低限の設定でもOK）
+  register_taxonomy('etc_class_cat', 'etc_class_cat', [
+    'hierarchical' => true,
+    'public'       => true,
+  ]);
+  echo '<Pre>';
+  print_r( get_taxonomies());
+  print_r($mytax_name);
+  echo '</Pre>';
+  //end of work
+
   $mytax = $mytax_name;
   $selected = get_query_var($mytax);
   $items = array();
@@ -68,15 +90,6 @@ function my_checkbox_list_taxonomy($mytax_name){
   print('<input type="checkbox" id="' . $mytax . '_all" ' . $checked . '/> <label for="size_all" class="unit_t strong_f big mdl">すべて選択</label>');
   print('<ul class="choices clearfix">');
   $tags = get_terms($mytax, array('hide_empty' => false, 'orderby' => 'id'));
-  //yamada debug work
-  global $wpdb;
-  echo '<Pre>';
-  print_r( get_taxonomies());
-  //print_r( $wpdb->get_results("SELECT * FROM $wpdb->terms") );
-  print_r($mytax);
-  //print_r($tags);
-  echo '</Pre>';
-  //end of work
   $checkboxes = '';
   foreach($tags as $tag) :
     if(in_array("0", $items)){
@@ -100,16 +113,9 @@ function my_checkbox_list_taxonomy($mytax_name){
   </div>
 <?php endif; ?>
 
-
 <main>
 <div class="container2">
-
 <section class="search-list">
-<?php
-  $args = query_for_taxonomy('etc', array('etc_class_cat', 'etc_type_cat', 'etc_mast_cat','etc_price_range_cat','etc_model_cat','etc_time_cat'),array('req'));
-  $wp_query = new WP_query();
-  $wp_query->query($args);
-?>
   <h2 class="headline-title2"><i class="fas fa-search"></i> フォークリフト・その他商品を探す</h2>
 
   <form class="esf-form" method="get" action="/etc-result">
