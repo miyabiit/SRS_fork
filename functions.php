@@ -66,6 +66,50 @@ function mydropdown_taxsonomy($taxonomy) {
     echo '</select>';
   }
 }
+//yamada add
+/**
+ * メインサイトを参照する設定
+ */
+$wpdb_main = null;
+$wpdb_fork = null;
+function init_wpdb() {
+    global $wpdb, $wpdb_main, $wpdb_fork;
+    $wpdb_main = new wpdb( DB_USER_MAIN, DB_PASSWORD_MAIN, DB_NAME_MAIN, DB_HOST_MAIN );
+    $wpdb_fork = $wpdb;
+}
+function set_dbprefix_main() {
+    global $wpdb, $wpdb_main, $wpdb_fork;
+    if( is_null($wpdb_main) || is_null($wpdb_fork) ){
+        init_wpdb();
+    }
+    $wpdb = $wpdb_main;
+    $wpdb->set_prefix(DBPREFIX_MAIN);
+		//tax
+  	register_taxonomy('etc_class_cat', 'etc_class_cat', ['hierarchical' => true,'public' => true]);
+  	register_taxonomy('etc_type_cat', 'etc_type_cat', ['hierarchical' => true,'public' => true]);
+  	register_taxonomy('etc_mast_cat', 'etc_mast_cat', ['hierarchical' => true,'public' => true]);
+  	register_taxonomy('etc_price_range_cat', 'etc_price_range_cat', ['hierarchical' => true,'public' => true]);
+  	register_taxonomy('etc_model_cat', 'etc_model_cat', ['hierarchical' => true,'public' => true]);
+  	register_taxonomy('etc_time_cat', 'etc_time_cat', ['hierarchical' => true,'public' => true]);
+}
 
+function set_dbprefix_fork() {
+    global $wpdb, $wpdb_main, $wpdb_fork;
+    if( is_null($wpdb_main) || is_null($wpdb_fork) ){
+        init_wpdb();
+    }
+    $wpdb = $wpdb_fork;
+    $wpdb->set_prefix(DBPREFIX_FORK);
+}
+
+// for debug
+if (!function_exists('dd')) {
+    function dd($var) {
+        echo '<pre>';
+        var_dump($var);
+        echo '</pre>';
+        die(); // ここで処理を止める
+    }
+}
 
 ?>

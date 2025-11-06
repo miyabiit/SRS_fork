@@ -4,7 +4,87 @@ Template Name: 商品検索-etc-search
 */
 ?>
 <?php get_header(); ?>
+<?php set_dbprefix_main(); ?>
 <?php get_template_part('global_menu'); ?>
+<?php
+function query_for_taxonomy($mypost_type,$mytaxlist,$mymetalist){
+  $args = array(
+    'post_type' => $mypost_type,
+    'posts_per_page' => 16,
+    'paged' => get_query_var('paged'),
+    'orderby' => 'date'
+  );
+  $tax_args = array(
+    'relation' => 'AND',
+  );
+  foreach($mytaxlist as $mytax){
+    if(isset($_GET[$mytax])){
+      array_push($tax_args,
+        array(
+          'taxonomy' => $mytax,
+          'field' => 'slug',
+          'terms' => $_GET[$mytax]
+        )
+      );
+    }
+  }
+  $args['tax_query'] = $tax_args;
+  $meta_args = array(
+    'relation' => 'AND',
+  );
+  foreach($mymetalist as $mymeta){
+    if(isset($_GET[$mymeta])){
+      array_push($meta_args,
+        array(
+          'key' => 'req',
+          'value' => $_GET[$mymeta],
+          'compare' => 'IN'
+        )
+      );
+    }
+  }
+  $args['meta_query'] = $meta_args;
+
+  if(!is_user_logged_in()){
+    $args['post_status'] = 'publish'; // ログイン中は非公開も表示
+  }
+  if(isset($_GET['keyword'])){
+    $args['s'] = $_GET['keyword'];
+  }
+  return $args;
+}
+$args = query_for_taxonomy('etc', array('etc_class_cat', 'etc_type_cat', 'etc_mast_cat','etc_price_range_cat','etc_model_cat','etc_time_cat'),array('req'));
+$wp_query = new WP_query();
+$wp_query->query($args);
+?>
+<?php
+function my_checkbox_list_taxonomy($mytax_name){
+  $mytax = $mytax_name;
+  $selected = get_query_var($mytax);
+  $items = array();
+  if(!is_array($selected)){
+    array_push($items, $selected);
+  }else{
+    $items = array_merge($items,$selected);
+  }
+  $checked = in_array("0", $items) ? 'checked' : '';
+  print('<input type="checkbox" id="' . $mytax . '_all" ' . $checked . '/> <label for="size_all" class="unit_t strong_f big mdl">すべて選択</label>');
+  print('<ul class="choices clearfix">');
+  $tags = get_terms($mytax, array('hide_empty' => false, 'orderby' => 'id'));
+  $checkboxes = '';
+  foreach($tags as $tag) :
+    if(in_array("0", $items)){
+      $checked = 'checked';
+    }else{
+      $checked = (in_array($tag->slug,$items)) ? 'checked' : '';
+    }
+    $checkboxes .= '<li><input type="checkbox" name="' . $mytax . '[]" value="' . $tag->slug . '" id="' . $mytax . '-' . $tag->term_id . '" ' . $checked . '/>';
+    $checkboxes .= '<label for="' . $mytax . '-' . $tag->slug . '">' . $tag->name . '</label></li>';
+  endforeach;
+  print $checkboxes;
+  echo '</ul>';
+}
+?>
 
 <?php if ( function_exists( 'bcn_display' ) ) : ?>
   <div class="breadcrumb-wrap">
@@ -14,16 +94,9 @@ Template Name: 商品検索-etc-search
   </div>
 <?php endif; ?>
 
-
 <main>
 <div class="container2">
-
 <section class="search-list">
-<?php
-  $args = query_for_taxonomy('etc', array('etc_class_cat', 'etc_type_cat', 'etc_mast_cat','etc_price_range_cat','etc_model_cat','etc_time_cat'),array('req'));
-  $wp_query = new WP_query();
-  $wp_query->query($args);
-?>
   <h2 class="headline-title2"><i class="fas fa-search"></i> フォークリフト・その他商品を探す</h2>
 
   <form class="esf-form" method="get" action="/etc-result">
