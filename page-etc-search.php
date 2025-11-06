@@ -8,9 +8,6 @@ Template Name: 商品検索-etc-search
 <?php get_template_part('global_menu'); ?>
 <?php
 function query_for_taxonomy($mypost_type,$mytaxlist,$mymetalist){
-  //global $authors_kyusyu;
-  global $wpdb;
-  print_r($wpdb->users);
   $args = array(
     'post_type' => $mypost_type,
     'posts_per_page' => 16,
@@ -62,24 +59,6 @@ $wp_query->query($args);
 ?>
 <?php
 function my_checkbox_list_taxonomy($mytax_name){
-  //yamada debug work
-  global $wpdb;
-  // 一度タクソノミーをクリア
-  //global $wp_taxonomies;
-  //unset( $wp_taxonomies['etc_class_cat'] ); // 例：必要なtaxonomyだけ
-  // 外部DBに合わせて再登録（最低限の設定でもOK）
-	/*
-  register_taxonomy('etc_class_cat', 'etc_class_cat', [
-    'hierarchical' => true,
-    'public'       => true,
-  ]);
-	*/
-  echo '<Pre>';
-  print_r( get_taxonomies());
-  //print_r($mytax_name);
-  echo '</Pre>';
-  //end of work
-
   $mytax = $mytax_name;
   $selected = get_query_var($mytax);
   $items = array();
