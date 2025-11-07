@@ -91,6 +91,7 @@ function set_dbprefix_main() {
   	register_taxonomy('etc_price_range_cat', 'etc_price_range_cat', ['hierarchical' => true,'public' => true]);
   	register_taxonomy('etc_model_cat', 'etc_model_cat', ['hierarchical' => true,'public' => true]);
   	register_taxonomy('etc_time_cat', 'etc_time_cat', ['hierarchical' => true,'public' => true]);
+  	register_taxonomy('mark_label_cat', 'mark_label_cat', ['hierarchical' => true,'public' => true]);
 }
 
 function set_dbprefix_fork() {
