@@ -118,7 +118,9 @@ if(in_array("condition",$tags)) print '<span class="product_list_sign gray stron
 <div class="searched_product_data">
 <?php
 $img = get_field('img1');
+if(!empty($img)){ $img['url'] = str_replace(HOSTNAME_FORK, HOSTNAME_MAIN, $img['url']); }
 $link = get_permalink($post->ID);
+if(!empty($link)){ $link = str_replace(HOSTNAME_FORK, HOSTNAME_MAIN, $link); }
 if(!empty($img)){
 	$soldout = get_field('soldout');
 	if($soldout){
