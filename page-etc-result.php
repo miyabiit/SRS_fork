@@ -200,7 +200,6 @@ if(!empty($img)){
     <div class="product_see_more">
       <?php 
         $url_archives = get_permalink(); 
-        dd($url_archives);
         echo '<a href="' . esc_url($url_archives) . '" title="' . get_the_title($post->ID) . '">詳細を見る <i class="fas fa-angle-double-right"></i>';
       ?>
       </a>
