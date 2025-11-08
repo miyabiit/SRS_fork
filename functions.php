@@ -102,6 +102,25 @@ function set_dbprefix_fork() {
     $wpdb = $wpdb_fork;
     $wpdb->set_prefix(DBPREFIX_FORK);
 }
+// カスタム投稿タイプ登録
+add_action('init', function() {
+    register_post_type('etc', [
+        'label' => 'forklift',
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => ['slug' => 'etc'],
+        'show_ui' => true,
+    ]);
+});
+// 個別投稿ページが404エラーにならないように'pre_get_posts'のタイミングでdb切り替え
+function change_posts_query($query) {
+    if ( is_admin() || ! $query->is_main_query() )
+        return;
+    if( isset($query->query['post_type']) && ($query->query['post_type']==='news' || $query->query['post_type']==='etc' || $query->query['post_type']==='office') ){
+        set_dbprefix_main();
+    }
+}
+add_action( 'pre_get_posts', 'change_posts_query' );
 
 // for debug
 if (!function_exists('dd')) {
