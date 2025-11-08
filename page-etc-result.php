@@ -198,11 +198,12 @@ if(!empty($img)){
   </div>
 </div>
     <div class="product_see_more">
-      <!-- a href="<?php echo get_permalink($post->ID );?>" title="<?php echo get_the_title($post->ID);?>">詳細を見る <i class="fas fa-angle-double-right"></i -->
-			<?php 
-				$url_archives = get_permalink(); 
-      	echo '<a href="' . esc_url($url_archives) . '" title="<?php echo get_the_title($post->ID);?>">詳細を見る <i class="fas fa-angle-double-right"></i>';
-			?>
+      <?php 
+        //$url_archives = get_permalink(); 
+	$url_archives = 'https://www.srs-sales.com/archives/etc/other' . $post->ID;
+        //dd($url_archives);
+        echo '<a href="' . esc_url($url_archives) . '" title="' . get_the_title($post->ID) . '">詳細を見る <i class="fas fa-angle-double-right"></i>';
+      ?>
       </a>
     </div>
 
