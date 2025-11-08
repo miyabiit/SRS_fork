@@ -38,11 +38,11 @@ if(in_array("condition",$tags)) print '<span class="product_list_sign gray stron
 
     <!-- メイン画像 -->
     <div class="product-grid">
-      <div class="product-image">
+    <div class="product-image">
 <?php
 $img1 = get_field('img1');
 if(!empty($img1)){
-  $url1 = $img1['url'];
+  $url1 = str_replace(HOSTNAME_FORK, HOSTNAME_MAIN, $img1['url']); 
   $caption1 = $img1['caption'];
   $soldout = get_field('soldout');
   if($soldout){

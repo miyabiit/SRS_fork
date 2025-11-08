@@ -114,7 +114,6 @@ add_action('init', function() {
 });
 // 個別投稿ページが404エラーにならないように'pre_get_posts'のタイミングでdb切り替え
 function change_posts_query($query) {
-    global $authors_kyusyu;
     if ( is_admin() || ! $query->is_main_query() )
         return;
     if( isset($query->query['post_type']) && ($query->query['post_type']==='news' || $query->query['post_type']==='etc' || $query->query['post_type']==='office') ){
