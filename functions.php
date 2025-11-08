@@ -102,7 +102,16 @@ function set_dbprefix_fork() {
     $wpdb = $wpdb_fork;
     $wpdb->set_prefix(DBPREFIX_FORK);
 }
-
+// カスタム投稿タイプ登録
+add_action('init', function() {
+    register_post_type('etc', [
+        'label' => 'forklift',
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => ['slug' => 'etc'],
+        'show_ui' => true,
+    ]);
+});
 // for debug
 if (!function_exists('dd')) {
     function dd($var) {
