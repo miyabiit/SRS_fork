@@ -227,8 +227,17 @@ function my_checkbox_list_taxonomy($mytax_name){
 
 <?php get_footer(); ?>
 <script>
-document.getElementById('etc_class_cat_all').addEventListener('change', function() {
-  const checkboxes = document.querySelectorAll('.subchk input[type="checkbox"]');
-  checkboxes.forEach(cb => cb.checked = this.checked);
+document.addEventListener("DOMContentLoaded", function() {
+  // ✅ チェックボックスの親子連動
+  document.querySelectorAll("input[type='checkbox']").forEach(function(checkbox) {
+    checkbox.addEventListener("change", function() {
+      const siblingUl = this.parentElement.querySelector("ul");
+      if (siblingUl) {
+        siblingUl.querySelectorAll("input[type='checkbox']").forEach(function(childCheckbox) {
+          childCheckbox.checked = checkbox.checked;
+        });
+      }
+    });
+  });
 });
 </script>
