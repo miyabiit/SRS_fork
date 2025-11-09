@@ -61,6 +61,12 @@ $wp_query->query($args);
 function my_checkbox_list_taxonomy($mytax_name){
   $mytax = $mytax_name;
   $selected = get_query_var($mytax);
+
+  // ↓ ここを追加
+  if ( empty($selected) && isset($_GET[$mytax]) ) {
+      $selected = $_GET[$mytax];
+  }
+
   $items = array();
   if(!is_array($selected)){
     array_push($items, $selected);
