@@ -106,7 +106,7 @@ add_action('init', function() {
     $taxonomies = [
         'etc_class_cat', 'etc_type_cat', 'etc_mast_cat',
         'etc_price_range_cat', 'etc_model_cat', 'etc_time_cat',
-        'mark_label_cat'
+        'mark_label_cat','products_cat'
     ];
     foreach ($taxonomies as $tax) {
         register_taxonomy($tax, null, [

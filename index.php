@@ -575,6 +575,8 @@ $query = new WP_Query(array(
   'orderby' => 'date',
   'order' => 'DESC'
 ));
+//echo taxonomy_exists('products_cat') ? 'OK' : 'NG';
+//dd($query->posts);
 while($query->have_posts()) : $query->the_post();
 ?>
   <li><span class="date"><?php the_time("Y年m月d日 l  "); ?></span><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
