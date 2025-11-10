@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+<?php set_dbprefix_main(); ?>
 <?php get_template_part('global_menu'); ?>
 <main>
 
@@ -129,7 +130,7 @@
   </div>
 </form>
 
-
+<!--
 <h1>★確認用★</h1>
     <form role="search" method="get" action="/etc-result" class="search-form">
       <div class="search-group">
@@ -233,7 +234,7 @@
     </form>
   </div>
 </section>
-
+-->
 <section id="recommend" class="section-style">
   <div class="container2">
     <h2 class="headline-title"><i class="fas fa-thumbs-up"></i> 新着商品|<span class="etc_new_com">おすすめ中古フォークリフト</span></h2>
@@ -258,6 +259,7 @@
             <?php
             $soldout = get_field("soldout");
             $img = get_field('img1');
+            if(!empty($img)){ $img['url'] = str_replace(HOSTNAME_FORK, HOSTNAME_MAIN, $img['url']); }
             if ($soldout) echo '<div class="product_list_img_soldout">';
             if (!empty($img)) echo '<img src="' . esc_url($img['url']) . '" alt="商品画像">';
             if ($soldout) echo '</div>';
@@ -307,7 +309,7 @@ if(in_array("condition",$tags)) print '<div class="product_list_sign2 gray stron
   </div>
 </section>
 
-
+<!--
 <h1>★確認用★</h1>
 <section id="recommend" class="section-style">
 <div class="container2">
@@ -345,7 +347,7 @@ if(in_array("condition",$tags)) print '<div class="product_list_sign2 gray stron
     </div>
 </div>
 </section>
-
+-->
 
 
 <section id="merit" class="section-style meritbox">
@@ -573,6 +575,8 @@ $query = new WP_Query(array(
   'orderby' => 'date',
   'order' => 'DESC'
 ));
+//echo taxonomy_exists('products_cat') ? 'OK' : 'NG';
+//dd($query->posts);
 while($query->have_posts()) : $query->the_post();
 ?>
   <li><span class="date"><?php the_time("Y年m月d日 l  "); ?></span><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
