@@ -587,7 +587,7 @@ while($query->have_posts()) : $query->the_post();
 </div>
 </section>
 
-
+<!--
 <h1>★確認用★</h1>
 <section id="news" class="section-style">
 <div class="container2 info">
@@ -605,9 +605,7 @@ while($query->have_posts()) : $query->the_post();
 	</div>
 </div>
 </section>
-
-
-
+-->
 
 <section id="info" class="section-style">
 <div class="container2">
