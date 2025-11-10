@@ -259,6 +259,7 @@
             <?php
             $soldout = get_field("soldout");
             $img = get_field('img1');
+            if(!empty($img)){ $img['url'] = str_replace(HOSTNAME_FORK, HOSTNAME_MAIN, $img['url']); }
             if ($soldout) echo '<div class="product_list_img_soldout">';
             if (!empty($img)) echo '<img src="' . esc_url($img['url']) . '" alt="商品画像">';
             if ($soldout) echo '</div>';
