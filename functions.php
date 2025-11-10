@@ -84,14 +84,6 @@ function set_dbprefix_main() {
     }
     $wpdb = $wpdb_main;
     $wpdb->set_prefix(DBPREFIX_MAIN);
-		//tax
-  	register_taxonomy('etc_class_cat', 'etc_class_cat', ['hierarchical' => true,'public' => true]);
-  	register_taxonomy('etc_type_cat', 'etc_type_cat', ['hierarchical' => true,'public' => true]);
-  	register_taxonomy('etc_mast_cat', 'etc_mast_cat', ['hierarchical' => true,'public' => true]);
-  	register_taxonomy('etc_price_range_cat', 'etc_price_range_cat', ['hierarchical' => true,'public' => true]);
-  	register_taxonomy('etc_model_cat', 'etc_model_cat', ['hierarchical' => true,'public' => true]);
-  	register_taxonomy('etc_time_cat', 'etc_time_cat', ['hierarchical' => true,'public' => true]);
-  	register_taxonomy('mark_label_cat', 'mark_label_cat', ['hierarchical' => true,'public' => true]);
 }
 
 function set_dbprefix_fork() {
@@ -111,6 +103,18 @@ add_action('init', function() {
         'rewrite' => ['slug' => 'etc'],
         'show_ui' => true,
     ]);
+    $taxonomies = [
+        'etc_class_cat', 'etc_type_cat', 'etc_mast_cat',
+        'etc_price_range_cat', 'etc_model_cat', 'etc_time_cat',
+        'mark_label_cat'
+    ];
+    foreach ($taxonomies as $tax) {
+        register_taxonomy($tax, null, [
+            'hierarchical' => true,
+            'public' => true,
+            'query_var' => true,
+        ]);
+    }
 });
 // 個別投稿ページが404エラーにならないように'pre_get_posts'のタイミングでdb切り替え
 function change_posts_query($query) {
