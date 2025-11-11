@@ -50,19 +50,25 @@ if ( ! function_exists('doc_link') ) {
         return '';
     }
 }
-//ダミー定義（Fatal回避用）
+// ドロップダウンメニュー
 function mydropdown_taxsonomy($taxonomy) {
   $terms = get_terms(array(
-    'taxonomy' => $taxonomy,
+    'taxonomy'   => $taxonomy,
     'hide_empty' => false,
   ));
 
   if (!empty($terms) && !is_wp_error($terms)) {
-    echo '<select name="' . esc_attr($taxonomy) . '">';
-    echo '<option value="0">–</option>';
+    // 現在のURL（ベースURL）を取得
+    $base_url = esc_url( home_url('/etc-result') );
+
+    echo '<select name="' . esc_attr($taxonomy) . '" id="' . esc_attr($taxonomy) . '" 
+          onchange="if(this.value) window.location.href=\'' . $base_url . '?' . esc_attr($taxonomy) . '=\'+this.value;">';
+    echo '<option value="">– 選択してください –</option>';
+
     foreach ($terms as $term) {
       echo '<option value="' . esc_attr($term->slug) . '">' . esc_html($term->name) . '</option>';
     }
+
     echo '</select>';
   }
 }
