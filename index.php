@@ -132,9 +132,11 @@
   </div>
 
   <div class="search-button">
-    <button type="submit" class="btn">
+    <!-- button id="search-btn" type="submit" class="btn" -->
+    <a href="#" id="search-btn" class="btn">
       <i class="fas fa-search"></i> この条件で検索する
-    </button>
+    <!-- /button -->
+    </a>
   </div>
 
   <div id="text-search-section" class="text-search">
@@ -148,111 +150,6 @@
   </div>
 </form>
 
-<!--
-<h1>★確認用★</h1>
-    <form role="search" method="get" action="/etc-result" class="search-form">
-      <div class="search-group">
-
-        <div class="search-column">
-          <label>
-            <span>タイプ(動力)で探す</span>
-            <select name="etc_type_cat">
-              <option value="0">–</option>
-              <option value="type01">ディーゼルカウンター</option>
-              <option value="type02">ガソリンカウンター</option>
-              <option value="type03">バッテリーカウンター</option>
-              <option value="type04">ＬＰＧカウンター</option>
-              <option value="type05">ガソリン/ＬＰＧカウンター</option>
-              <option value="type06">バッテリーリーチ</option>
-              <option value="type07">その他</option>
-            </select>
-          </label>
-
-          <label>
-            <span>クラス(トン数)で探す</span>
-            <select name="etc_class_cat">
-              <option value="0">–</option>
-              <option value="class01">～0.9ｔ</option>
-              <option value="class02">1.0ｔ～1.5ｔ</option>
-              <option value="class03">2.0ｔ～2.5ｔ</option>
-              <option value="class04">3.0ｔ～3.5ｔ</option>
-              <option value="class05">4.0ｔ～4.5ｔ</option>
-              <option value="class06">5.0ｔ～8.0ｔ</option>
-              <option value="class07">10.0ｔ～</option>
-            </select>
-          </label>
-
-          <label>
-            <span>価格で探す</span>
-            <select name="etc_price_range_cat">
-              <option value="0">–</option>
-              <option value="price01">～50万円未満</option>
-              <option value="price02">～100万円未満</option>
-              <option value="price03">～200万円未満</option>
-              <option value="price04">～300万円未満</option>
-              <option value="price05">300万円以上</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="search-column">
-          <label>
-            <span>マストで探す</span>
-            <select name="etc_mast_cat">
-              <option value="0">–</option>
-              <option value="mast01">2段スタンダード</option>
-              <option value="mast02">2段フルフリー</option>
-              <option value="mast03">3段フルフリー</option>
-              <option value="mast04">ハイマスト</option>
-              <option value="mast05">ローマスト</option>
-            </select>
-          </label>
-
-          <label>
-            <span>年式で探す</span>
-            <select name="etc_model_cat">
-              <option value="0">–</option>
-              <option value="model01">～2000年</option>
-              <option value="model02">2001年～2010年</option>
-              <option value="model03">2011年～2020年</option>
-              <option value="model04">2021年～</option>
-            </select>
-          </label>
-
-          <label>
-            <span>稼働時間で探す</span>
-            <select name="etc_time_cat">
-              <option value="0">–</option>
-              <option value="time01">～1000時間未満</option>
-              <option value="time02">～3000時間未満</option>
-              <option value="time03">～5000時間未満</option>
-              <option value="time04">～10000時間未満</option>
-              <option value="time05">10000時間以上</option>
-            </select>
-          </label>
-        </div>
-
-      </div>
-
-      <div class="search-button">
-        <button type="submit" class="btn">
-          <i class="fas fa-search"></i> この条件で検索する
-        </button>
-      </div>
-
-<div id="text-search-section" class="text-search">
-  <h3><i class="fas fa-keyboard"></i> テキストで検索</h3>
-  <div class="text-search-box">
-    <textarea name="s" placeholder="キーワードを入力してください"></textarea>
-    <button type="submit" class="btn">
-      <i class="fas fa-search"></i> キーワード検索
-    </button>
-  </div>
-</div>
-    </form>
-  </div>
-</section>
--->
 <section id="recommend" class="section-style">
   <div class="container2">
     <h2 class="headline-title"><i class="fas fa-thumbs-up"></i> 新着商品|<span class="etc_new_com">おすすめ中古フォークリフト</span></h2>
@@ -326,47 +223,6 @@ if(in_array("condition",$tags)) print '<div class="product_list_sign2 gray stron
     </div>
   </div>
 </section>
-
-<!--
-<h1>★確認用★</h1>
-<section id="recommend" class="section-style">
-<div class="container2">
-<h2 class="headline-title"><i class="fas fa-thumbs-up"></i> 新着商品|<span class="etc_new_com">おすすめ中古フォークリフト</span></h2>
-<p class="recommend_etc_com">現在は「エンジン式」「ハイマスト」の商品を特におすすめしております。<br>
-その他の商品も是非細部まで情報をご確認ください。</p>
-
-    <div class="products">
-        <div class="product-card">
-            <div class="product-content">
-                <div class="product-catch">1.5tガソリン車、2019年製、標準マスト・オートマ車！！</div>
-                <img src="https://www.srs-sales.com/wp-content/uploads/2025/07/KIMG20250627_140609734.jpg" alt="商品画像">
-                <div class="product-title">トヨタ/1.5tガソリンフォークリフトトヨタ/1.5tガソリンフォークリフト</div>
-                <div class="product-detail-group">
-                    <div class="product-detail">メーカー</div>
-                    <div class="product_list_info_data">トヨタ/02-8FGL15</div>
-                    <div class="product-detail">商品番号</div>
-                    <div class="product_list_info_data">8FGL18-68935</div>
-                </div>
-                <div class="product-price-group">
-                    <div class="product-price-item">現状販売価格</div>
-                    <div class="product-price-value">1,200,000円</div>
-                    <div class="tax-price">(税込価格: 1,320,000円)</div>
-                    <div class="product-price-item">メンテナンス込み価格</div>
-                    <div class="product-price-value">1,380,000円</div>
-                    <div class="tax-price">(税込価格: 1,518,000円)</div>
-                </div>
-            </div>
-            <div class="product-tags">
-                <div class="product_list_sign2 orange strong_f">おすすめ</div>
-                <div class="product_list_sign2 orange strong_f">美品</div>
-                <div class="product_list_sign2 orange strong_f">即時出荷</div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
--->
-
 
 <section id="merit" class="section-style meritbox">
 <div class="container2">
@@ -593,8 +449,6 @@ $query = new WP_Query(array(
   'orderby' => 'date',
   'order' => 'DESC'
 ));
-//echo taxonomy_exists('products_cat') ? 'OK' : 'NG';
-//dd($query->posts);
 while($query->have_posts()) : $query->the_post();
 ?>
   <li><span class="date"><?php the_time("Y年m月d日 l  "); ?></span><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
@@ -604,27 +458,6 @@ while($query->have_posts()) : $query->the_post();
 	</div>
 </div>
 </section>
-
-<!--
-<h1>★確認用★</h1>
-<section id="news" class="section-style">
-<div class="container2 info">
-
-<h2 class="headline-title"><i class="fas fa-bullhorn"></i> お知らせ</h2>
-	<div class="box_inner">
-		
-		<ul id="news-list">
-			<li><span class="date">2025年06月16日 月曜日  </span><a href="https://www.srs-sales.com/archives/news/2025-06-16_16681">【新規コンテンツ公開】SRSのご紹介</a></li>
-			<li><span class="date">2025年04月22日 火曜日  </span><a href="https://www.srs-sales.com/archives/news/2025-04-22_16299">amazonギフトカードプレゼントキャンペーン実施中！！</a></li>
-			<li><span class="date">2025年04月16日 水曜日  </span><a href="https://www.srs-sales.com/archives/news/2025-04-16_16292">LINE公式アカウント 友だち募集中！</a></li>
-			<li><span class="date">2025年03月07日 金曜日  </span><a href="https://www.srs-sales.com/archives/news/2025-03-07_16002">【働きかた改革】による土日休業実施のお知らせ</a></li>
-			<li><span class="date">2024年11月06日 水曜日  </span><a href="https://www.srs-sales.com/archives/news/2024-11-06_15618">新入荷情報│三菱/2.5tディーゼルフォークリフトが入荷しました！</a></li>
-		</ul>	
-	</div>
-</div>
-</section>
--->
-
 <section id="info" class="section-style">
 <div class="container2">
 <h2 class="headline-title"><i class="fas fa-info-circle"></i> ご案内</h2>
@@ -683,6 +516,58 @@ while($query->have_posts()) : $query->the_post();
 </div>
 </section>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const baseUrl = '/etc-result';
+  const searchBtn = document.getElementById('search-btn');
+
+  searchBtn.addEventListener('click', function() {
+    const selects = document.querySelectorAll('select[data-taxonomy]');
+    let queryParts = [];
+
+    selects.forEach(s => {
+      const taxonomy = s.dataset.taxonomy;
+      if (s.value) {
+        queryParts.push(
+          encodeURIComponent(taxonomy) + '=' + encodeURIComponent(s.value)
+        );
+      }
+    });
+
+    const query = queryParts.join('&');
+    const targetUrl = query ? `${baseUrl}?${query}` : baseUrl;
+
+    window.location.href = targetUrl;
+  });
+});
+</script>
+<?php
+// ドロップダウンメニュー
+function mydropdown_taxsonomy($taxonomy) {
+  $terms = get_terms([
+    'taxonomy'   => $taxonomy,
+    'hide_empty' => false,
+    'orderby'    => 'slug',
+    'order'      => 'ASC',
+  ]);
+
+  if (!empty($terms) && !is_wp_error($terms)) {
+
+    // 現在の選択値
+    $current = isset($_GET[$taxonomy]) ? sanitize_text_field($_GET[$taxonomy]) : '';
+
+    echo '<select data-taxonomy="' . esc_attr($taxonomy) . '" id="' . esc_attr($taxonomy) . '">';
+    echo '<option value="">-- 選択なし --</option>';
+
+    foreach ($terms as $term) {
+      $selected = ($term->slug === $current) ? 'selected' : '';
+      echo '<option value="' . esc_attr($term->slug) . '" ' . $selected . '>' . esc_html($term->name) . '</option>';
+    }
+
+    echo '</select>';
+  }
+}
+?>
 
 <?php get_footer(); ?>
 

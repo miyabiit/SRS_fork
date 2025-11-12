@@ -50,8 +50,9 @@ if ( ! function_exists('doc_link') ) {
         return '';
     }
 }
-// ドロップダウンメニュー
-function mydropdown_taxsonomy($taxonomy) {
+//yamada add
+// ドロップダウンメニュー(単独検索）
+function _mydropdown_taxsonomy($taxonomy) {
   $terms = get_terms(array(
     'taxonomy'   => $taxonomy,
     'hide_empty' => false,
@@ -74,7 +75,6 @@ function mydropdown_taxsonomy($taxonomy) {
     echo '</select>';
   }
 }
-//yamada add
 /**
  * メインサイトを参照する設定
  */
