@@ -55,6 +55,8 @@ function mydropdown_taxsonomy($taxonomy) {
   $terms = get_terms(array(
     'taxonomy'   => $taxonomy,
     'hide_empty' => false,
+    'orderby'    => 'slug',
+    'order'      => 'ASC'
   ));
 
   if (!empty($terms) && !is_wp_error($terms)) {
