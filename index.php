@@ -11,7 +11,7 @@
   <a href="#etc_flow" class="hero-btn">ご購入の流れ</a>
   <a href="#news" class="hero-btn">お知らせ</a>
 </div>
-  <div class="swiper-wrapper" id="swiper-wrapper-abe7389b846821035" aria-live="off" style="transition-duration: 0ms; transition-delay: 0ms;">
+  <div class="swiper-wrapper sbox" id="swiper-wrapper-abe7389b846821035" aria-live="off" style="transition-duration: 0ms; transition-delay: 0ms;">
 <div class="mainimg-key">
 <div class="mainimg-key_ttl">中古フォークリフトの購入をご検討中の皆様へ<br>
 ご希望の条件にかなう商品をご案内いたします。</div>
@@ -19,6 +19,24 @@
 トヨタ、三菱、TCM、ユニキャリア、日産、住友ナコ、ニチユ、コマツ、など多数</p>
 </div>
 
+<div class="swiper-slide">
+  <div class="swiper-img">
+    <img src="<?php echo get_template_directory_uri(); ?>/img/top/img1.jpg" alt="">
+  </div>
+</div>
+<div class="swiper-slide">
+  <div class="swiper-img">
+    <img src="<?php echo get_template_directory_uri(); ?>/img/top/img6.jpg" alt="">
+  </div>
+</div>
+<div class="swiper-slide">
+  <div class="swiper-img">
+    <img src="<?php echo get_template_directory_uri(); ?>/img/top/img09.jpg" alt="">
+  </div>
+</div>
+
+
+<!--
 <div class="swiper-slide swiper-slide-prev" style="width: 859px; opacity: 1; transform: translate3d(-2577px, 0px, 0px); transition-duration: 0ms;" role="group" aria-label="1 / 5" data-swiper-slide-index="0">
       <div class="swiper-img">
       <img src="<?php echo get_template_directory_uri();?>/img/top/img1.jpg" alt="">
@@ -26,16 +44,16 @@
     </div>
 <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-active" style="width: 859px; opacity: 1; transform: translate3d(-3436px, 0px, 0px); transition-duration: 0ms;" role="group" aria-label="2 / 5" data-swiper-slide-index="1">
       <div class="swiper-img">
-      <img src="<?php echo get_template_directory_uri();?>/img/top/img6.jpg" alt="">
+      <img src="<?php echo get_template_directory_uri();?>/img/top/img6.jpg" alt="">
       </div>
     </div>
 
   <div class="swiper-slide swiper-slide-next" style="width: 859px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;" role="group" aria-label="3 / 5" data-swiper-slide-index="2">
       <div class="swiper-img">
-      <img src="<?php echo get_template_directory_uri();?>/img/top/img2.png" alt="">
+      <img src="<?php echo get_template_directory_uri();?>/img/top/img09.jpg" alt="">
       </div>
     </div>
-<!--
+
 <div class="swiper-slide" style="width: 859px; opacity: 1; transform: translate3d(-859px, 0px, 0px); transition-duration: 0ms;" role="group" aria-label="4 / 5" data-swiper-slide-index="3">
       <div class="swiper-img">
       <img src="<?php echo get_template_directory_uri();?>/img/top/img_6.jpg" alt="">
@@ -664,6 +682,7 @@ while($query->have_posts()) : $query->the_post();
 
 </div>
 </section>
+
 
 <?php get_footer(); ?>
 

@@ -334,14 +334,16 @@ body.home .container2 {
 .swiper-slide-prev .swiper-img {
   animation: zoomUp 7s linear 0s normal both;
 }
+
 @media screen and (min-width: 920px){
+.swiper-wrapper.sbox {
+    height: 600px;
+}
 .swiper-slide img {
     height: 600px;
     width: 100%;
     object-fit: cover;
 }
-
-
 .mainimg-key_ttl {
     color: white;
     font-size: 2.8rem;
@@ -3524,6 +3526,7 @@ footer,
     display: none;
   }
 }
+
 
 
 
