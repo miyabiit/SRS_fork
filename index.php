@@ -439,6 +439,7 @@ if(in_array("condition",$tags)) print '<div class="product_list_sign2 gray stron
 $query = new WP_Query(array(
   'post_type' => 'news',
   'posts_per_page' => 5,
+	'paged' => get_query_var('paged'),
   'tax_query' => array(
     array(
       'taxonomy' => 'products_cat',
@@ -449,6 +450,8 @@ $query = new WP_Query(array(
   'orderby' => 'date',
   'order' => 'DESC'
 ));
+$query = new WP_Query();
+$query->query($args);
 while($query->have_posts()) : $query->the_post();
 ?>
   <li><span class="date"><?php the_time("Y年m月d日 l  "); ?></span><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
