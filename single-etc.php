@@ -62,31 +62,29 @@ if(!empty($img1)){
 <div class="img-cap-sml"><?php echo $caption1; ?></div>
 <?php } ?>
       </div>
-
       <!-- 価格＋基本仕様 -->
       <div class="spec-data">
 
         <!-- 価格ブロック（上部だけ） -->
         <div class="price-block">
-<?php $value = get_field('price02') ; if(empty($value)) : else:?>
+          <?php $value = get_field('price02') ; if(empty($value)) : else:?>
           <div class="price-item">
             <span class="title">現状販売価格</span>
-<span class="price">
-  <span class="num"><?php echo number_format((int)get_field('price02')); ?></span><span class="yen">円</span><br>
-  <span class="yen">(税込価格<?php echo number_format((int)get_field('price02')*TAX_RATIO); ?>円)</span>
-</span>
+            <span class="price">
+              <span class="num"><?php echo number_format((int)get_field('price02')); ?></span><span class="yen">円</span><br>
+              <span class="yen">(税込価格<?php echo number_format((int)get_field('price02')*TAX_RATIO); ?>円)</span>
+            </span>
           </div>
-<?php endif;?>
-
-<?php $value = get_field('price') ; if(empty($value)) : else:?>
+          <?php endif;?>
+          <?php $value = get_field('price') ; if(empty($value)) : else:?>
           <div class="price-item service">
             <span class="title">メンテナンス込み価格</span>
-<span class="price">
-  <span class="num"><?php echo number_format((int)get_field('price')); ?></span><span class="yen">円</span><br>
-  <span class="yen">(税込価格<?php echo number_format((int)get_field('price')*TAX_RATIO); ?>円)</span>
-</span>
+            <span class="price">
+            <span class="num"><?php echo number_format((int)get_field('price')); ?></span><span class="yen">円</span><br>
+            <span class="yen">(税込価格<?php echo number_format((int)get_field('price')*TAX_RATIO); ?>円)</span>
+            </span>
           </div>
-<?php endif;?>
+          <?php endif;?>
           <span class="note sml">別途、諸費用（設置費・運賃等）が発生いたします。</span>
         </div>
 

@@ -1,8 +1,10 @@
 <?php
 /*
+Template Name: お知らせ
 */
 ?>
 <?php get_header(); ?>
+<?php set_dbprefix_main(); ?>
 <?php get_template_part('global_menu'); ?>
 
 <?php if ( function_exists( 'bcn_display' ) ) : ?>
@@ -27,7 +29,7 @@
 <?php the_content(); ?>
 </div>
 </section>
-<?php endwhile; endif; ?>
+<!-- ?php end while; endif; ? -->
 
 
 </div>
