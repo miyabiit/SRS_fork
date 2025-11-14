@@ -439,6 +439,7 @@ if(in_array("condition",$tags)) print '<div class="product_list_sign2 gray stron
 $query = new WP_Query(array(
   'post_type' => 'news',
   'posts_per_page' => 5,
+  'paged' => get_query_var('paged'),
   'tax_query' => array(
     array(
       'taxonomy' => 'products_cat',

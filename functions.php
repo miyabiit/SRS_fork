@@ -102,6 +102,53 @@ function set_dbprefix_fork() {
     $wpdb = $wpdb_fork;
     $wpdb->set_prefix(DBPREFIX_FORK);
 }
+// ① init の超早い段階で DB を main に切り替える
+add_action('init', function() {
+    $uri = $_SERVER['REQUEST_URI'];
+
+    if (preg_match('#^/archives/news/#', $uri)) {
+        set_dbprefix_main();
+    }
+    global $wpdb;
+    console_log('[init] prefix=' . $wpdb->prefix);
+
+    if (preg_match('#^/archives/etc/#', $uri)) {
+        set_dbprefix_main();
+    }
+
+}, 1); // ← 優先度1（最も早く実行）
+
+// ② カスタム投稿タイプ登録（優先度10＝通常のタイミング）
+add_action('init', function() {
+    register_post_type('etc', [
+        'label' => 'forklift',
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => ['slug' => 'etc'],
+        'show_ui' => true,
+    ]);
+    register_post_type('news', [
+        'label' => 'お知らせ',
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => ['slug' => 'news'],
+        'show_ui' => true,
+    ]);
+
+    $taxonomies = [
+        'etc_class_cat', 'etc_type_cat', 'etc_mast_cat',
+        'etc_price_range_cat', 'etc_model_cat', 'etc_time_cat',
+        'mark_label_cat','products_cat'
+    ];
+    foreach ($taxonomies as $tax) {
+        register_taxonomy($tax, null, [
+            'hierarchical' => true,
+            'public' => true,
+            'query_var' => true,
+        ]);
+    }
+}, 10);
+/*
 // カスタム投稿タイプ登録
 add_action('init', function() {
     register_post_type('etc', [
@@ -109,6 +156,13 @@ add_action('init', function() {
         'public' => true,
         'has_archive' => true,
         'rewrite' => ['slug' => 'etc'],
+        'show_ui' => true,
+    ]);
+    register_post_type('news', [
+        'label' => 'お知らせ',
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => ['slug' => 'news'],
         'show_ui' => true,
     ]);
     $taxonomies = [
@@ -124,6 +178,16 @@ add_action('init', function() {
         ]);
     }
 });
+// 個別投稿ページが404エラーにならないように'parse_request'のタイミングでdb切り替え
+add_action('parse_request', function($wp) {
+    // /news/slug/
+    if (strpos($wp->request, 'news/') === 0) {
+        set_dbprefix_main();
+    }
+    if (strpos($wp->request, 'etc/') === 0) {
+        set_dbprefix_main();
+    }
+});
 // 個別投稿ページが404エラーにならないように'pre_get_posts'のタイミングでdb切り替え
 function change_posts_query($query) {
     if ( is_admin() || ! $query->is_main_query() )
@@ -133,6 +197,7 @@ function change_posts_query($query) {
     }
 }
 add_action( 'pre_get_posts', 'change_posts_query' );
+ */
 
 // for debug
 if (!function_exists('dd')) {
@@ -143,5 +208,14 @@ if (!function_exists('dd')) {
         die(); // ここで処理を止める
     }
 }
-
+function console_log($data) {
+    echo "<script>console.log(" . json_encode($data) . ");</script>";
+}
+/*
+add_action('parse_request', function($wp) {
+    console_log('[parse_request] request=' . $wp->request);
+    global $wpdb;
+    console_log('[parse_request] prefix=' . $wpdb->prefix);
+});
+ */
 ?>
