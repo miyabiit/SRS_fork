@@ -1,6 +1,5 @@
 <?php
 /*
-Template Name: お知らせ
 */
 ?>
 <?php get_header(); ?>
