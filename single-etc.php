@@ -103,8 +103,8 @@ if(!empty($img1)){
       <?php for($i=1; $i<=24; $i++):
         $img = get_field('img'.$i);
         if($img):
-          $url = $img['url'];
-          $thumb = $img['sizes']['thumbnail'];
+          $url = str_replace(HOSTNAME_FORK, HOSTNAME_MAIN, $img['url']); 
+          $thumb = str_replace(HOSTNAME_FORK, HOSTNAME_MAIN, $img['sizes']['thumbnail']);
       ?>
       <a href="<?php echo esc_url($url); ?>" data-fancybox="gallery">
         <img decoding="async" src="<?php echo esc_url($thumb); ?>" alt="">
